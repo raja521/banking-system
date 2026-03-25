@@ -14,6 +14,18 @@ spring:
               uri: lb://customer-service
               predicates:
                 - Path=/customers/**
+            - id: transaction-service
+              uri: lb://transaction-service
+              predicates:
+                - Path=/transactions/**
+            - id: notification-service
+              uri: lb://notification-service
+              predicates:
+                - Path=/notifications/**
+            - id: auth-service
+              uri: lb://auth-service
+              predicates:
+                - Path=/auth/**
 server:
   port: 8080
 eureka:
