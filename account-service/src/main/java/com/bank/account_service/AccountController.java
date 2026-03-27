@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/accounts")
 public class AccountController {
     
-    @GetMapping("/test")
+    @GetMapping("/test1")
     public String test() {
         return "Account Service is up and running!";
     }
@@ -22,5 +22,16 @@ public class AccountController {
     public String getMessage() {
         return this.customMessage;
     }
+
+    // Add an endpoint to call the Customer Service using Feign Client
+    private final AccountService accountService;
     
+    public AccountController(AccountService accountService) {
+        this.accountService = accountService;
+    }
+    
+    @GetMapping("/customer-status")
+    public String getCustomerServiceStatus() {
+        return accountService.getCustomerServiceStatus();
+    }
 }
